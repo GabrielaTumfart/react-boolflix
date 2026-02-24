@@ -30,7 +30,21 @@ function Component() {
   );
 }
 */
+import { useState } from 'react';
+import axios from 'axios';
+
 export default function Header() {
+    const [data, setData] = useState([]);
+    const [search, setSearch] = useState("");
+
+    const loadData = () => {
+    // per alcune api potrebbe essere necessario usare un endpoint diverso
+    // se search è vuoto
+    axios
+      .get(`https://dummyjson.com/products/search?q=${search}`)
+      .then((res) => setData(res.data));
+  };
+
     return (
       <>
         <h1>BoolFlix</h1>
