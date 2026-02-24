@@ -72,6 +72,16 @@ export default function Header() {
         />
         <button onClick={loadData}>Cerca</button>
       </div>
+      <ul>
+        {data.map((movie) => (
+          <li key={movie.id}>
+            <p>Titolo: {movie.title}</p>
+            <p>Titolo Originale: {movie.original_title}</p>
+            <p>Lingua: {movie.original_language}</p>
+            <p>Voto: {movie.vote_average}</p>
+          </li>
+        ))}
+      </ul>
     </>
   );
 }
