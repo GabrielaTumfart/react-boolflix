@@ -30,28 +30,43 @@ function Component() {
   );
 }
 */
-import { useState } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from "react";
+import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 export default function Header() {
-    const [data, setData] = useState([]);
-    const [search, setSearch] = useState("");
+  const [data, setData] = useState([]);
+  const [search, setSearch] = useState("");
 
-    const loadData = () => {
+  const loadData = () => {
     // per alcune api potrebbe essere necessario usare un endpoint diverso
     // se search è vuoto
     axios
-      .get(`https://dummyjson.com/products/search?q=${search}`)
-      .then((res) => setData(res.data));
+      .get(API_URL + "/discover/tv", {
+        params: {
+          api_key: API_KEY,
+        },
+      })
+      .then(function (res) {
+        setData(res.data);
+        console.log(res.data);
+        console.log(res.data.results[0].name);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
-    return (
-      <>
-        <h1>BoolFlix</h1>
-        <div>
-          <input type="text" placeholder="Cerca un film..." />
-          <button>Cerca</button>
-        </div>
-      </>
-    );
-  }
+  useEffect(loadData, []);
+
+  return (
+    <>
+      <h1>BoolFlix</h1>
+      <div>
+        <input type="text" placeholder="Cerca un film..." />
+        <button>Cerca</button>
+      </div>
+    </>
+  );
+}
