@@ -40,18 +40,18 @@ export default function Header() {
   const [search, setSearch] = useState("");
 
   const loadData = () => {
-    // per alcune api potrebbe essere necessario usare un endpoint diverso
-    // se search è vuoto
     axios
-      .get(API_URL + "/discover/tv", {
+      .get(API_URL + "/search/movie", {
         params: {
           api_key: API_KEY,
+          query: search,
+          language: "it-IT",
         },
       })
       .then(function (res) {
-        setData(res.data);
+        setData(res.data.results);
         console.log(res.data);
-        console.log(res.data.results[0].name);
+        console.table(res.data.results); //results[0].name
       })
       .catch((e) => {
         console.log(e);
@@ -64,8 +64,13 @@ export default function Header() {
     <>
       <h1>BoolFlix</h1>
       <div>
-        <input type="text" placeholder="Cerca un film..." />
-        <button>Cerca</button>
+        <input
+          type="text"
+          placeholder="Cerca un film..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button onClick={loadData}>Cerca</button>
       </div>
     </>
   );
