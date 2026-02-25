@@ -103,7 +103,7 @@ export default function Header() {
             <span
               className={`fi fi-${languages[movie.original_language]}`}
             ></span>
-            <p>Voto: {movie.vote_average}</p>
+            <p>Voto: ⭐️{Math.round(movie.vote_average * 0.5)}</p>
           </li>
         ))}
       </ul>
@@ -115,7 +115,7 @@ export default function Header() {
             <p>Titolo: {tv.name}</p>
             <p>Titolo Originale: {tv.original_name}</p>
             <span className={`fi fi-${languages[tv.original_language]}`}></span>
-            <p>Voto: {tv.vote_average}</p>
+            <p>Voto: ⭐️{Math.round(tv.vote_average * 0.5 * 10) / 10}</p>
           </li>
         ))}
       </ul>
