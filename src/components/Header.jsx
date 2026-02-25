@@ -78,7 +78,9 @@ export default function Header() {
           <li key={movie.id}>
             <p>Titolo: {movie.title}</p>
             <p>Titolo Originale: {movie.original_title}</p>
-            <p>Lingua: {movie.original_language}</p>
+            <span
+              className={`fi fi-${languages[movie.original_language]}`}
+            ></span>
             <p>Voto: {movie.vote_average}</p>
           </li>
         ))}
