@@ -83,6 +83,7 @@ export default function Header() {
   return (
     <>
       <h1>BoolFlix</h1>
+      <h2>FILM</h2>
       <div>
         <input
           type="text"
@@ -104,6 +105,7 @@ export default function Header() {
           </li>
         ))}
       </ul>
+      <h2>SERIE TV</h2>
       <ul>
         {tvData.map((tv) => (
           <li key={tv.id}>
