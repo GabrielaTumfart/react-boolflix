@@ -94,31 +94,37 @@ export default function Header() {
         />
         <button onClick={loadData}>Cerca</button>
       </div>
-      <ul>
+      <div className="row">
         {data.map((movie) => (
-          <li key={movie.id}>
-            <p>Titolo: {movie.title}</p>
-            <img src={`${IMG_URL}${movie.poster_path}`} alt={movie.title} />
-            <p>Titolo Originale: {movie.original_title}</p>
-            <span
-              className={`fi fi-${languages[movie.original_language]}`}
-            ></span>
-            <p>Voto: ⭐️{Math.round(movie.vote_average * 0.5)}</p>
-          </li>
+          <div className="col-3">
+            <div className="card" key={movie.id}>
+              <p>Titolo: {movie.title}</p>
+              <img src={`${IMG_URL}${movie.poster_path}`} alt={movie.title} />
+              <p>Titolo Originale: {movie.original_title}</p>
+              <span
+                className={`fi fi-${languages[movie.original_language]}`}
+              ></span>
+              <p>Voto: ⭐️{Math.round(movie.vote_average * 0.5)}</p>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
       <h2>SERIE TV</h2>
-      <ul>
+      <>
+        <div className="row">
         {tvData.map((tv) => (
-          <li key={tv.id}>
+            <div className="col-3">
+          <div className="card"  key={tv.id}>
             <img src={`${IMG_URL}${tv.poster_path}`} alt={tv.name} />
             <p>Titolo: {tv.name}</p>
             <p>Titolo Originale: {tv.original_name}</p>
             <span className={`fi fi-${languages[tv.original_language]}`}></span>
-            <p>Voto: ⭐️{Math.round(tv.vote_average * 0.5 * 10) / 10}</p>
-          </li>
+            <p>Voto: ⭐️{Math.round(tv.vote_average * 0.5 * 10)}</p>
+          </div>
+          </div>    
+
         ))}
-      </ul>
+      </div>
     </>
   );
 }
