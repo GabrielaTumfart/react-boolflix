@@ -84,7 +84,7 @@ export default function Header() {
   return (
     <>
       <h1>BoolFlix</h1>
-      <h2>FILM</h2>
+      <h2 className="text-white bg-dark p-2">FILM</h2>
       <div>
         <input
           type="text"
@@ -109,7 +109,7 @@ export default function Header() {
           </div>
         ))}
       </div>
-      <h2>SERIE TV</h2>
+      <h2 className="text-white bg-dark p-2">SERIE TV</h2>
       <>
         <div className="row">
           {tvData.map((tv) => (
