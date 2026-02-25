@@ -38,6 +38,7 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 
 export default function Header() {
   const [data, setData] = useState([]);
+  const [tvData, setTvData] = useState([]);
   const [search, setSearch] = useState("");
 
   const loadData = () => {
@@ -53,6 +54,24 @@ export default function Header() {
         setData(res.data.results);
         console.log(res.data);
         console.table(res.data.results); //results[0].name
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+
+    //aggiungo un secondo stato per le serie TV e una seconda chiamata API
+
+    axios
+      .get(API_URL + "/search/tv", {
+        params: {
+          api_key: API_KEY,
+          query: search,
+          language: "it-IT",
+        },
+      })
+      .then(function (res) {
+        setTvData(res.data.results);
+        console.table(res.data.results);
       })
       .catch((e) => {
         console.log(e);
@@ -82,6 +101,16 @@ export default function Header() {
               className={`fi fi-${languages[movie.original_language]}`}
             ></span>
             <p>Voto: {movie.vote_average}</p>
+          </li>
+        ))}
+      </ul>
+      <ul>
+        {tvData.map((tv) => (
+          <li key={tv.id}>
+            <p>Titolo: {tv.name}</p>
+            <p>Titolo Originale: {tv.original_name}</p>
+            <span className={`fi fi-${languages[tv.original_language]}`}></span>
+            <p>Voto: {tv.vote_average}</p>
           </li>
         ))}
       </ul>
