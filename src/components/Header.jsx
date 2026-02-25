@@ -35,6 +35,7 @@ import axios from "axios";
 import { languages } from "../data/languages";
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
+const IMG_URL = import.meta.env.VITE_IMG_URL;
 
 export default function Header() {
   const [data, setData] = useState([]);
@@ -97,6 +98,7 @@ export default function Header() {
         {data.map((movie) => (
           <li key={movie.id}>
             <p>Titolo: {movie.title}</p>
+            <img src={`${IMG_URL}${movie.poster_path}`} alt={movie.title} />
             <p>Titolo Originale: {movie.original_title}</p>
             <span
               className={`fi fi-${languages[movie.original_language]}`}
@@ -109,6 +111,7 @@ export default function Header() {
       <ul>
         {tvData.map((tv) => (
           <li key={tv.id}>
+            <img src={`${IMG_URL}${tv.poster_path}`} alt={tv.name} />
             <p>Titolo: {tv.name}</p>
             <p>Titolo Originale: {tv.original_name}</p>
             <span className={`fi fi-${languages[tv.original_language]}`}></span>
