@@ -100,13 +100,11 @@ export default function Header() {
             <div className="card">
               <p>Titolo: {movie.title}</p>
               <img src={`${IMG_URL}${movie.poster_path}`} alt={movie.title} />
-              <div className="card-img-overlay">
-                <p>Titolo Originale: {movie.original_title}</p>
-                <span
-                  className={`fi fi-${languages[movie.original_language]}`}
-                ></span>
-                <p>Voto: ⭐️{Math.round(movie.vote_average * 0.5)}</p>
-              </div>
+              <p>Titolo Originale: {movie.original_title}</p>
+              <span
+                className={`fi fi-${languages[movie.original_language]}`}
+              ></span>
+              <p>Voto: ⭐️{Math.round(movie.vote_average * 0.5)}</p>
             </div>
           </div>
         ))}
@@ -118,14 +116,12 @@ export default function Header() {
             <div className="col-3" key={tv.id}>
               <div className="card">
                 <img src={`${IMG_URL}${tv.poster_path}`} alt={tv.name} />
-                <div className="card-img-overlay">
-                  <p>Titolo: {tv.name}</p>
-                  <p>Titolo Originale: {tv.original_name}</p>
-                  <span
-                    className={`fi fi-${languages[tv.original_language]}`}
-                  ></span>
-                  <p>Voto: ⭐️{Math.round(tv.vote_average * 0.5 * 10)}</p>
-                </div>
+                <p>Titolo: {tv.name}</p>
+                <p>Titolo Originale: {tv.original_name}</p>
+                <span
+                  className={`fi fi-${languages[tv.original_language]}`}
+                ></span>
+                <p>Voto: ⭐️{Math.round(tv.vote_average * 0.5 * 10)}</p>
               </div>
             </div>
           ))}
