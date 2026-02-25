@@ -112,19 +112,21 @@ export default function Header() {
       <h2>SERIE TV</h2>
       <>
         <div className="row">
-        {tvData.map((tv) => (
+          {tvData.map((tv) => (
             <div className="col-3">
-          <div className="card"  key={tv.id}>
-            <img src={`${IMG_URL}${tv.poster_path}`} alt={tv.name} />
-            <p>Titolo: {tv.name}</p>
-            <p>Titolo Originale: {tv.original_name}</p>
-            <span className={`fi fi-${languages[tv.original_language]}`}></span>
-            <p>Voto: ⭐️{Math.round(tv.vote_average * 0.5 * 10)}</p>
-          </div>
-          </div>    
-
-        ))}
-      </div>
+              <div className="card" key={tv.id}>
+                <img src={`${IMG_URL}${tv.poster_path}`} alt={tv.name} />
+                <p>Titolo: {tv.name}</p>
+                <p>Titolo Originale: {tv.original_name}</p>
+                <span
+                  className={`fi fi-${languages[tv.original_language]}`}
+                ></span>
+                <p>Voto: ⭐️{Math.round(tv.vote_average * 0.5 * 10)}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </>
     </>
   );
 }
