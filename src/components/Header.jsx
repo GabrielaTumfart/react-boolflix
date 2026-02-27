@@ -37,6 +37,15 @@ const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 const IMG_URL = import.meta.env.VITE_IMG_URL;
 
+const renderVote = (vote) => {
+  const stars = [];
+  const normalizedVote = Math.ceil(vote / 2);
+  for (let i = 1; i <= 5; i++) {
+    stars.push(i <= normalizedVote ? "⭐" : "☆");
+  }
+  return stars;
+};
+
 export default function Header() {
   const [data, setData] = useState([]);
   const [tvData, setTvData] = useState([]);
@@ -104,7 +113,7 @@ export default function Header() {
               <span
                 className={`fi fi-${languages[movie.original_language]}`}
               ></span>
-              <p>Voto: ⭐️{Math.round(movie.vote_average * 0.5)}</p>
+              <p>Voto: {renderVote(movie.vote_average)}</p>
             </div>
           </div>
         ))}
@@ -121,7 +130,7 @@ export default function Header() {
                 <span
                   className={`fi fi-${languages[tv.original_language]}`}
                 ></span>
-                <p>Voto: ⭐️{Math.round(tv.vote_average * 0.5 * 10)}</p>
+                <p>Voto: {renderVote(tv.vote_average)}</p>
               </div>
             </div>
           ))}
